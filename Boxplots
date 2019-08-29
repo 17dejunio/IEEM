@@ -1,0 +1,95 @@
+### Ensayo IEEM ####
+### Boxplots
+
+
+### Paquetes ----
+
+Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+options(scipen=999)
+library(pacman)
+library(ggplot2)
+p_load(ggthemes, janitor, RColorBrewer, scales, tidyverse)
+
+
+
+#### Bases de datos ----
+
+## 2018
+
+
+dieciocho <- read_csv("https://drive.google.com/uc?export=download&id=1YKszTcnnbkPsF0M0wgPZsC8G52mIZj3E", 
+                      locale = locale(encoding = "ISO-8859-1")) 
+
+## 2009
+
+nueve <- read_csv("https://drive.google.com/uc?export=download&id=1S9X60HIcwKCV-wSeUWJIn6AO8n25Ltut", 
+                      locale = locale(encoding = "ISO-8859-1")) 
+
+
+## 2000
+
+cero <- read_csv("https://drive.google.com/uc?export=download&id=1NB8qpvicVMxvD5xpr6YutBfkIbq1Fdpj", 
+                  locale = locale(encoding = "ISO-8859-1")) 
+
+
+
+
+
+
+### Gráficas ----
+
+## 2018
+
+
+ggplot(dieciocho, aes(x=partidon, y=porcentaje)) +
+  geom_boxplot() +
+  geom_jitter(aes(color=partido, size=total), position = position_jitter(width=0.20), alpha=0.4) +
+  labs(title="Elecciones para ayuntamiento, 2018",
+       subtitle = "30 municipios del Estado de México",
+       x = "Partido o coalición",
+       y = "Porcentaje obtenido del total de votos",
+       color = "Partido o coalición",
+       size = "Votos obtenidos\npor municipio") +
+  scale_color_manual(values = c("brown", "maroon1", "darkcyan", "red"), 
+                     labels = c("Juntos \nHaremos \nHistoria\n", "Morena \n(sin\ncoalición)\n", "Frente \nPor \nMéxico\n", "PRI")) +
+  scale_size(labels = comma) 
+
+
+
+## 2009
+
+ggplot(nueve, aes(x=partido_, y=porcentaje)) +
+  geom_boxplot() +
+  geom_jitter(aes(color=partido_, size=total), position = position_jitter(width=0.20), alpha=0.4) +
+  labs(title="Elecciones para ayuntamiento, 2009",
+       subtitle = "30 municipios del Estado de México",
+       x = "Partido o coalición",
+       y = "Porcentaje obtenido del total de votos",
+       color = "Partido o coalición",
+       size = "Votos obtenidos\npor municipio") +
+  scale_color_manual(values = c("orangered1", "blue", "gold3", "maroon3", "red", "coral4"), 
+                     labels = c("Movimiento\nCiudadano\n", "PAN\n", "PRD sin\ncoalición)\n", "PRD-PT\n", "PRI-PVEM-NA-\nPSD-PFD\n", "PT (sin\ncoalición)\n")) +
+  scale_size(labels = comma)
+
+
+
+## 2000
+
+view(cero)
+
+
+
+ggplot(cero, aes(x=partido, y=porcentaje)) +
+  geom_boxplot(width=0.4) +
+  geom_jitter(aes(color=partido, size=total), position = position_jitter(width=0.20), alpha=0.4) +
+  labs(title="Elecciones para ayuntamiento, 2000",
+       subtitle = "30 municipios del Estado de México",
+       x = "Partido",
+       y = "Porcentaje obtenido del total de votos",
+       color = "Partido",
+       size = "Votos obtenidos\npor municipio") +
+  scale_color_manual(values = c("blue", "gold3", "red"), 
+                     labels = c("PAN", "PRD", "PRI")) +
+  scale_size(labels = comma)
+
+
