@@ -1,0 +1,124 @@
+### Ensayo IEEM ####
+### Poder y oposición
+
+
+### Paquetes ----
+
+library(pacman)
+library(ggplot2)
+library(RColorBrewer)
+p_load(tidyverse, lubridate)
+library(gridExtra)
+library(readr)
+
+
+### Bases de datos -----
+
+## Primer lugar
+a <- read_csv("https://drive.google.com/uc?export=download&id=1WO1YaGtlUOr5upmCEE5pXkuZ-RTcOea3", 
+                     locale = locale(encoding = "ISO-8859-1"))
+
+## Segundo lugar
+
+b <- read_csv("https://drive.google.com/uc?export=download&id=1uCY1tUWTVLY73AHWValWFETMpnGdAuuY", 
+              locale = locale(encoding = "ISO-8859-1"))
+
+
+
+
+### Gráficas ----
+
+## Primer lugar
+
+
+
+ggplot(a) +
+  geom_tile(aes(x=year, y=municipio, fill=poder, height=.85, width=4)) +
+  scale_fill_manual(values=c("CRN"="red",
+                             "MC"="orangered",
+                             "MORENA"="maroon",
+                             "MOR-PT-PES"="darkred",
+                             "PAN"="blue",
+                             "PAN-PRD-MC"="turquoise2",
+                             "PAN-PT"="blue4",
+                             "PARM"="darkolivegreen1",
+                             "PRD"="gold",
+                             "PRD-MC"="gold3",
+                             "PRD-PT"="yellow4",
+                             "PRD-PT-MC"="gold4",
+                             "PRI"="green4",
+                             "PRI-PVEM"="green3",
+                             "PRI-PVEM-NA"="green1",
+                             "PRI et al."="seagreen2",
+                             "PT"="red4",
+                             "PT-MC"="tomato2")) + 
+  scale_x_continuous(breaks = c(1990, 1993, 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018), expand = c(0,0))  +scale_y_discrete(expand=c(0,0)) +
+  labs(title="Partido o coalición que ganó elección, 1990-2018",
+       subtitle = "30 ayuntamientos del Estado de México",
+       x = "Año de elección",
+       y = "Municipio",
+       fill = "Partido o coalición") +
+  scale_y_discrete(labels = c("Ecatepec", "Nezahualcóyotl", "Naucalpan", "Toluca", "Tlalnepantla", "Chimalhuacán", "Cuautitlán Izcalli", "Atizapán de Zar.", "Tultitlán", "Ixtapaluca", "Tecámac", "Nicolás Romero", "V. Chalco Solidaridad*", "Chalco", "Coacoalco", "Texcoco", "La Paz", "Huixquilucan", "Metepec", "Zumpango", "Chicoloapan", "Zinacantepec", "Tultepec", "Almoloya de Juárez", "Ixtlahuaca", "Lerma", "Huehuetoca", "S. Felipe del Progreso", "Cuautitlán", "Acolman"))
+
+ggplot(a) +
+  geom_tile(aes(x=year, y=municipio, fill=poder, height=.85, width=4)) +
+  scale_fill_manual(values=c("CRN"="red",
+                             "MC"="orangered",
+                             "MORENA"="maroon",
+                             "MOR-PT-PES"="darkred",
+                             "PAN"="blue",
+                             "PAN-PRD-MC"="turquoise2",
+                             "PAN-PT"="blue4",
+                             "PARM"="darkolivegreen1",
+                             "PRD"="gold",
+                             "PRD-MC"="gold3",
+                             "PRD-PT"="yellow4",
+                             "PRD-PT-MC"="gold4",
+                             "PRI"="green4",
+                             "PRI-PVEM"="green3",
+                             "PRI-PVEM-NA"="green1",
+                             "PRI et al."="seagreen2",
+                             "PT"="red4",
+                             "PT-MC"="tomato2")) + 
+  scale_x_continuous(breaks = c(1990, 1993, 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018), expand = c(0,0))  +scale_y_discrete(expand=c(0,0)) +
+  labs(title="Partido o coalición que ganó elección, 1990-2018",
+       subtitle = "30 ayuntamientos del Estado de México",
+       x = "Año de elección",
+       y = "Municipio",
+       fill = "Partido o coalición")
+
+
+
+## Segundo lugar
+
+
+ggplot(b) +
+  geom_tile(aes(x=year, y=municipio, fill=segundo, height=.85, width=4)) +
+  scale_fill_manual(values=c("CRN"="black",
+                             "MC"="orangered",
+                             "MORENA"="maroon",
+                             "MOR-PT-PES"="darkred",
+                             "PAN"="blue",
+                             "PAN-PRD-MC"="turquoise2",
+                             "PAN-PT"="blue4",
+                             "PARM"="darkolivegreen1",
+                             "PRD"="gold",
+                             "PRD-MC"="gold3",
+                             "PRD-PT"="sienna3",
+                             "PRD-PT-MC"="gold4",
+                             "PRI"="green4",
+                             "PRI-PVEM"="green3",
+                             "PRI-PVEM-NA"="green1",
+                             "PRI et al."="seagreen2",
+                             "PT"="red",
+                             "PT-MC"="tomato2")) + 
+  scale_x_continuous(breaks = c(1990, 1993, 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018), expand = c(0,0))  +scale_y_discrete(expand=c(0,0)) +
+  labs(title="Partido o coalición que quedó en segundo lugar, 1990-2018",
+       subtitle = "30 ayuntamientos del Estado de México",
+       x = "Año de elección",
+       y = "Municipio",
+       fill = "Partido o coalición")
+
+
+
+                                                
