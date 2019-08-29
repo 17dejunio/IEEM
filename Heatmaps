@@ -1,0 +1,134 @@
+### Ensayo IEEM ###
+### Mapas de calor 
+
+
+#Nota: si el código falla, usar dev.off()
+
+
+### Paquetes ----
+
+library(pacman)
+library(ggplot2)
+library(gplots)
+library(RColorBrewer)
+p_load(tidyverse, readxl, janitor, lubridate)
+
+Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+options(scipen=999)
+
+
+### Márgenes de victoria (gráfica) ----
+
+dev.off()
+
+a <- read_csv("https://drive.google.com/uc?export=download&id=1WtIbguj3GtLN2-PB7RL5C5GTpfFlFTt_", 
+              locale = locale(encoding = "ISO-8859-1"))
+
+row.names(a) <- a$municipio
+
+a <- a %>% 
+  select("1990":"2018")
+
+a <- as.matrix(a)
+
+
+
+heatmap.2(a,  Colv=NA, Rowv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Margen de victoria \n Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Competitividad electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(a,  Colv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Margen de victoria \n Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Competitividad electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(a, Rowv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Margen de victoria \n Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Competitividad electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(a, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Margen de victoria \n Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Competitividad electoral", xlab="Año", ylab="Municipio")
+
+
+dev.off()
+
+### Concentración del voto (gráfica) ----
+
+
+b <- read_csv("https://drive.google.com/uc?export=download&id=1uT8WqoufxzrE71o2u654hy4_PYCkQVoU", 
+              locale = locale(encoding = "ISO-8859-1"))
+
+row.names(b) <- b$municipio
+
+
+b <- b %>% 
+  select("1990":"2018")
+
+b <- as.matrix(b)
+
+
+
+heatmap.2(b,  Colv=F, Rowv=F, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Concentración del voto", xlab="Año", ylab="Municipio")
+
+heatmap.2(b,  Colv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Concentración del voto", xlab="Año", ylab="Municipio")
+
+heatmap.2(b, Rowv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Concentración del voto", xlab="Año", ylab="Municipio")
+
+heatmap.2(b, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.3, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Concentración del voto", xlab="Año", ylab="Municipio")
+
+
+dev.off()
+
+### Votos nulos (gráfica) ----
+
+
+c <- read_csv("https://drive.google.com/uc?export=download&id=1-xjfkk9Zq0ySa2AhEvOpyy2U6yljsUOr", 
+              locale = locale(encoding = "ISO-8859-1"))
+
+row.names(c) <- c$municipio
+
+c <- c %>% 
+  select("1990":"2018")
+
+c <- as.matrix(c)
+
+
+
+heatmap.2(c,  Colv=F, Rowv=F, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Voto nulo", xlab="Año", ylab="Municipio")
+
+heatmap.2(c,  Colv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Voto nulo", xlab="Año", ylab="Municipio")
+
+heatmap.2(c, Rowv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Voto nulo", xlab="Año", ylab="Municipio")
+
+heatmap.2(c, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Voto nulo", xlab="Año", ylab="Municipio")
+
+
+
+dev.off()
+
+### Votos nulos (gráfica) ----
+
+
+d <- read_csv("https://drive.google.com/uc?export=download&id=1bfhI93UnjzNFh6YWc0HPyEWF701Nc6Pb", 
+              locale = locale(encoding = "ISO-8859-1"))
+
+row.names(d) <- d$municipio
+
+d <- d %>% 
+  select("1993":"2018")
+
+d <- as.matrix(d)
+
+
+
+heatmap.2(d,  Colv=F, Rowv=F, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Participación electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(d,  Colv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Participación electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(d, Rowv=NA, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Participación electoral", xlab="Año", ylab="Municipio")
+
+heatmap.2(d, srtCol=45, offsetCol=0, offsetRow=0, key=T, keysize=1.4, key.title="", key.xlab="Mín. = 0  Máx. = 1", col = brewer.pal(9, "PuRd"), scale = "none", margins=c(5,10), trace="none", density.info="none", symkey=F, main= "Participación electoral", xlab="Año", ylab="Municipio")
+
+
+
+
+
+
+
+#https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
+# Colores para heatmap
+
+
+
