@@ -1,0 +1,67 @@
+### Ensayo IEEM ###
+### Lista nominal 
+
+
+
+### Paquetes ----
+
+library(pacman)
+p_load(tidyverse, lubridate, ggthemes, scales)
+library(ggplot2)
+library(gplots)
+library(RColorBrewer)
+library(directlabels)
+
+
+
+### Base de datos ----
+
+orden <- read_csv("https://drive.google.com/uc?export=download&id=1uYQqRzVx7ryNDsxvBbdqA585sLJgQNMV", 
+                   locale = locale(encoding = "ISO-8859-1"))
+
+
+
+### Gráfica(s) ----
+
+## Versión 1
+
+
+ggplot(orden, aes(x = year,
+                  y = -(numero),
+                  group = municipio,
+                  colour = municipio,
+                  size=lista)) + 
+  geom_line() + 
+  scale_size_area(labels = comma) +
+  scale_colour_discrete(guide = 'none') +
+  scale_x_continuous(expand=c(0,5.5), breaks = c(1993, 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018)) +
+  geom_dl(aes(label = municipio), method = list(dl.combine("first.points","last.points"),cex = .62)) +
+  scale_y_discrete(expand=c(0,0.75)) +
+  labs(title="Lista nominal en el tiempo, 1993-2018",
+       subtitle = "30 ayuntamientos del Estado de México",
+       x = "Año de elección",
+       y = "Municipio",
+       size = "Personas en lista nominal")
+
+
+
+## Versión 2
+
+
+ggplot (orden, aes(x = year,
+                   y = -(numero),
+                   group = municipio,
+                   colour = municipio,
+                   size=lista)) + 
+  geom_line(alpha=0.65) +
+  scale_size(guide='none') +
+  scale_colour_discrete(guide = 'none') +
+  scale_x_continuous(expand=c(0,4.5), breaks = c(1993, 1996, 2000, 2003, 2006, 2009, 2012, 2015, 2018)) +
+  geom_dl(aes(label = municipio),method = list(dl.combine("first.points","last.points"),cex = .62)) +
+  scale_y_discrete(expand=c(0,0.75)) +
+  labs(title="Lista nominal en el tiempo, 1993-2018",
+       subtitle = "30 ayuntamientos del Estado de México",
+       x = "Año de elección",
+       y = "Municipio",
+       size = "Personas en lista nominal")
+
