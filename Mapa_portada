@@ -1,0 +1,22 @@
+### Ensayo IEEM ###
+### Mapa de lista nominal
+
+library(devtools)
+install_github("diegovalle/mxmaps")
+
+library(devtools, choroplethr, inegiR)
+library(mxmaps)
+library(ggplot2)
+
+## Base de datos ----
+
+edo <- read_csv("https://drive.google.com/uc?export=download&id=1fBBwGFbbL4qEr-dlf9VJCBSMkpr9gb7c")
+
+
+## Mapa----
+
+edo$value <- edo$X15
+
+mxmunicipio_choropleth(edo, num_colors=9,
+                       zoom = subset(df_mxmunicipio, state_name %in% c("México"))$region, show_states = F)
+ 
